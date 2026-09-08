@@ -29,6 +29,16 @@ class DesignAssets extends Module
 
     public function hookActionFrontControllerSetMedia()
     {
+        $tokensFile = _PS_THEME_DIR_ . 'assets/css/tokens.css';
+
+        if (is_file($tokensFile)) {
+            $this->context->controller->registerStylesheet(
+                'designassets-tokens',
+                '/assets/css/tokens.css',
+                ['media' => 'all', 'priority' => 40]
+            );
+        }
+
         $layoutDir = _PS_THEME_DIR_ . 'assets/css/layout/';
 
         if (!is_dir($layoutDir)) {
