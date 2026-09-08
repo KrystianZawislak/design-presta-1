@@ -11,6 +11,8 @@ class FreeShippingBar extends Module
     const VAT_PERCENT = 'FREESHIPPINGBAR_VAT_PERCENT';
     const ENABLED = 'FREESHIPPINGBAR_ENABLED';
 
+    const PER_LANGUAGE_KEYS = [self::TEXT, self::TAX_MODE, self::VAT_PERCENT];
+
     public function __construct()
     {
         $this->name = 'freeshippingbar';
@@ -29,20 +31,30 @@ class FreeShippingBar extends Module
 
     public function install()
     {
-        return parent::install()
-            && $this->registerHook('displayFreeShippingBar')
-            && Configuration::updateValue(self::TAX_MODE, 'brutto')
-            && Configuration::updateValue(self::VAT_PERCENT, 23)
+        if (!parent::install() || !$this->registerHook('displayFreeShippingBar')) {
+            return false;
+        }
+
+        $taxModeDefaults = [];
+        $vatPercentDefaults = [];
+
+        foreach (Language::getLanguages(false) as $lang) {
+            $taxModeDefaults[(int) $lang['id_lang']] = 'brutto';
+            $vatPercentDefaults[(int) $lang['id_lang']] = 23;
+        }
+
+        return Configuration::updateValue(self::TAX_MODE, $taxModeDefaults)
+            && Configuration::updateValue(self::VAT_PERCENT, $vatPercentDefaults)
             && Configuration::updateValue(self::ENABLED, 1);
     }
 
     public function uninstall()
     {
-        return parent::uninstall()
-            && Configuration::deleteByName(self::TEXT)
-            && Configuration::deleteByName(self::TAX_MODE)
-            && Configuration::deleteByName(self::VAT_PERCENT)
-            && Configuration::deleteByName(self::ENABLED);
+        foreach (self::PER_LANGUAGE_KEYS as $key) {
+            Configuration::deleteByName($key);
+        }
+
+        return parent::uninstall() && Configuration::deleteByName(self::ENABLED);
     }
 
     public function getContent()
@@ -56,20 +68,16 @@ class FreeShippingBar extends Module
 
     protected function postProcess()
     {
-        $languages = Language::getLanguages(false);
+        foreach (self::PER_LANGUAGE_KEYS as $key) {
+            $values = [];
 
-        foreach ($languages as $lang) {
-            Configuration::updateValue(
-                self::TEXT,
-                Tools::getValue(self::TEXT . '_' . $lang['id_lang']),
-                false,
-                null,
-                (int) $lang['id_lang']
-            );
+            foreach (Language::getLanguages(false) as $lang) {
+                $values[(int) $lang['id_lang']] = Tools::getValue($key . '_' . $lang['id_lang']);
+            }
+
+            Configuration::updateValue($key, $values);
         }
 
-        Configuration::updateValue(self::TAX_MODE, Tools::getValue(self::TAX_MODE));
-        Configuration::updateValue(self::VAT_PERCENT, (float) Tools::getValue(self::VAT_PERCENT));
         Configuration::updateValue(self::ENABLED, (int) Tools::getValue(self::ENABLED));
     }
 
@@ -109,6 +117,7 @@ class FreeShippingBar extends Module
                         'type' => 'switch',
                         'label' => $this->l('Display amount as'),
                         'name' => self::TAX_MODE,
+                        'lang' => true,
                         'values' => [
                             [
                                 'id' => 'tax_mode_brutto',
@@ -126,6 +135,7 @@ class FreeShippingBar extends Module
                         'type' => 'text',
                         'label' => $this->l('VAT percentage'),
                         'name' => self::VAT_PERCENT,
+                        'lang' => true,
                         'suffix' => '%',
                         'desc' => $this->l('Used only when the amount is displayed as Netto, since the native PrestaShop shipping threshold is stored as Brutto.'),
                     ],
@@ -153,14 +163,15 @@ class FreeShippingBar extends Module
     protected function getConfigFieldsValues()
     {
         $values = [
-            self::TAX_MODE => Configuration::get(self::TAX_MODE),
-            self::VAT_PERCENT => Configuration::get(self::VAT_PERCENT),
             self::ENABLED => Configuration::get(self::ENABLED),
-            self::TEXT => [],
         ];
 
-        foreach (Language::getLanguages(false) as $lang) {
-            $values[self::TEXT][(int) $lang['id_lang']] = Configuration::get(self::TEXT, (int) $lang['id_lang']);
+        foreach (self::PER_LANGUAGE_KEYS as $key) {
+            $values[$key] = [];
+
+            foreach (Language::getLanguages(false) as $lang) {
+                $values[$key][(int) $lang['id_lang']] = Configuration::get($key, (int) $lang['id_lang']);
+            }
         }
 
         return $values;
@@ -187,14 +198,15 @@ class FreeShippingBar extends Module
             return '';
         }
 
-        $template = Configuration::get(self::TEXT, (int) $this->context->language->id);
+        $idLang = (int) $this->context->language->id;
+        $template = Configuration::get(self::TEXT, $idLang);
 
         if (empty($template)) {
             return '';
         }
 
-        $taxMode = Configuration::get(self::TAX_MODE);
-        $vatPercent = (float) Configuration::get(self::VAT_PERCENT);
+        $taxMode = Configuration::get(self::TAX_MODE, $idLang);
+        $vatPercent = (float) Configuration::get(self::VAT_PERCENT, $idLang);
 
         if ($taxMode === 'netto' && $vatPercent > 0) {
             $missing = $missing / (1 + $vatPercent / 100);

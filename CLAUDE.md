@@ -38,13 +38,17 @@ do nauki Dockera. Poniższe zasady obowiązują we wszystkich zmianach w kodzie.
 - Wszelkie wyjaśnienia, zastrzeżenia, uwagi "do zrobienia później" — tylko w rozmowie,
   nigdy w pliku.
 
-## 5. Cache CSS/JS (CCC) — wyłączone w dev, włączone na produkcji
+## 5. Cache — wyłączone w dev, włączone na produkcji
 
-- Na czas developmentu `PS_CSS_THEME_CACHE` i `PS_JS_THEME_CACHE` mają być WYŁĄCZONE
-  (`Parametry zaawansowane → Wydajność`), żeby zmiany w plikach było widać od razu,
-  bez czyszczenia cache.
-- Przed wdrożeniem na produkcję ktoś musi świadomie włączyć oba z powrotem — bez tego
-  sklep jedzie bez łączenia/minifikacji CSS i JS.
+- Na czas developmentu WYŁĄCZONE mają być trzy przełączniki w
+  `Parametry zaawansowane → Wydajność`:
+  - `PS_CSS_THEME_CACHE`
+  - `PS_JS_THEME_CACHE`
+  - `PS_SMARTY_CACHE` (cache całych wyrenderowanych stron — najłatwiej o nim zapomnieć,
+    bo nie jest w tej samej sekcji co CSS/JS, a jego skutek to sztywna, stara wersja
+    całej strony mimo zmian w kodzie)
+- Przed wdrożeniem na produkcję ktoś musi świadomie włączyć wszystkie trzy z powrotem —
+  bez tego sklep jedzie bez łączenia/minifikacji CSS/JS i bez cache'owania stron.
 
 ## 6. Bezpieczeństwo — bez wyjątków
 
