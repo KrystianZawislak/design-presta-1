@@ -5,6 +5,7 @@ prestashop/*
 !prestashop/modules
 prestashop/modules/*
 !prestashop/modules/designassets
+!prestashop/modules/freeshippingbar
 
 !prestashop/themes
 prestashop/themes/*
@@ -16,3 +17,8 @@ prestashop/themes/hummingbird/assets/*
 prestashop/themes/hummingbird/assets/css/*
 !prestashop/themes/hummingbird/assets/css/layout
 !prestashop/themes/hummingbird/assets/css/tokens.css
+!prestashop/themes/hummingbird/templates
+prestashop/themes/hummingbird/templates/*
+!prestashop/themes/hummingbird/templates/_partials
+prestashop/themes/hummingbird/templates/_partials/*
+!prestashop/themes/hummingbird/templates/_partials/header.tpl
