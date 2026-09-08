@@ -1,0 +1,33 @@
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MYSQL_ROOT_PASSWORD: prestashop
+      MYSQL_DATABASE: prestashop
+      MYSQL_USER: prestashop
+      MYSQL_PASSWORD: prestashop
+    volumes:
+      - ./db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+
+  prestashop:
+    image: prestashop/prestashop:latest
+    ports:
+      - "1000:80"
+    environment:
+      DB_SERVER: db
+      DB_NAME: prestashop
+      DB_USER: prestashop
+      DB_PASSWD: prestashop
+      PS_SHOP_NAME: "DESIGN PRESTA 1"
+      PS_INSTALL_AUTO: 1
+      PS_LANGUAGE: pl
+      PS_COUNTRY: PL
+      PS_DOMAIN: localhost:1000
+      ADMIN_MAIL: admin@prestashop.local
+      ADMIN_PASSWD: PrestaShop123!
+    volumes:
+      - ./prestashop:/var/www/html
+    depends_on:
+      - db
