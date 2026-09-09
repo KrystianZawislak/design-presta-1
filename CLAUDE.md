@@ -50,7 +50,17 @@ do nauki Dockera. Poniższe zasady obowiązują we wszystkich zmianach w kodzie.
 - Przed wdrożeniem na produkcję ktoś musi świadomie włączyć wszystkie trzy z powrotem —
   bez tego sklep jedzie bez łączenia/minifikacji CSS/JS i bez cache'owania stron.
 
-## 6. Bezpieczeństwo — bez wyjątków
+## 6. Commity — Conventional Commits
+
+- Każdy commit zaczyna się od typu w formacie `typ: opis`, np.:
+  `feat: add freeshippingbar module`, `fix: per-language config storage`,
+  `chore: update .gitignore`, `docs: add README setup steps`.
+- Najczęstsze typy: `feat` (nowa funkcjonalność), `fix` (naprawa buga), `chore`
+  (porządki/konfiguracja bez zmiany funkcjonalności), `docs` (dokumentacja),
+  `refactor` (zmiana kodu bez zmiany zachowania).
+- Opis krótki, po angielsku, w trybie rozkazującym ("add", nie "added"/"adds").
+
+## 7. Bezpieczeństwo — bez wyjątków
 
 - Żadnych luk bezpieczeństwa nie zostawiamy "na potem": SQL injection, XSS, brak
   walidacji/sanityzacji inputu, dane wrażliwe (hasła, klucze) w kodzie czy w repo,
