@@ -1,0 +1,32 @@
+.checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
+.container-xl, .container-xs, .container-xxl{
+    max-width: none;
+}
+
+@media (max-width: 575.98px) {
+    .checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
+    .container-xl, .container-xs, .container-xxl{
+        padding-inline: 8px;
+    }
+}
+
+@media (min-width: 576px) {
+    .checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
+    .container-xl, .container-xs, .container-xxl{
+        padding-inline: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
+    .container-xl, .container-xs, .container-xxl{
+        padding-inline: 24px;
+    }
+}
+
+@media (min-width: 992px) {
+    .checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
+    .container-xl, .container-xs, .container-xxl{
+        padding-inline: 40px;
+    }
+}

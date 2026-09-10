@@ -49,6 +49,16 @@ class DesignAssets extends Module
             );
         }
 
+        $overridesFile = _PS_THEME_DIR_ . 'assets/css/overrides.css';
+
+        if (is_file($overridesFile)) {
+            $this->context->controller->registerStylesheet(
+                'designassets-overrides',
+                '/assets/css/overrides.css',
+                ['media' => 'all', 'priority' => 55]
+            );
+        }
+
         $layoutDir = _PS_THEME_DIR_ . 'assets/css/layout/';
 
         if (!is_dir($layoutDir)) {

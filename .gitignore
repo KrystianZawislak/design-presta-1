@@ -17,6 +17,7 @@ prestashop/themes/hummingbird/assets/*
 prestashop/themes/hummingbird/assets/css/*
 !prestashop/themes/hummingbird/assets/css/layout
 !prestashop/themes/hummingbird/assets/css/tokens.css
+!prestashop/themes/hummingbird/assets/css/overrides.css
 !prestashop/themes/hummingbird/assets/css/fonts.css
 !prestashop/themes/hummingbird/assets/fonts
 prestashop/themes/hummingbird/assets/fonts/*
