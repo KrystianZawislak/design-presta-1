@@ -17,6 +17,13 @@ prestashop/themes/hummingbird/assets/*
 prestashop/themes/hummingbird/assets/css/*
 !prestashop/themes/hummingbird/assets/css/layout
 !prestashop/themes/hummingbird/assets/css/tokens.css
+!prestashop/themes/hummingbird/assets/css/fonts.css
+!prestashop/themes/hummingbird/assets/fonts
+prestashop/themes/hummingbird/assets/fonts/*
+!prestashop/themes/hummingbird/assets/fonts/playfair-display-latin-wght-normal.woff2
+!prestashop/themes/hummingbird/assets/fonts/playfair-display-latin-ext-wght-normal.woff2
+!prestashop/themes/hummingbird/assets/fonts/manrope-latin-wght-normal.woff2
+!prestashop/themes/hummingbird/assets/fonts/manrope-latin-ext-wght-normal.woff2
 !prestashop/themes/hummingbird/templates
 prestashop/themes/hummingbird/templates/*
 !prestashop/themes/hummingbird/templates/_partials

@@ -29,6 +29,16 @@ class DesignAssets extends Module
 
     public function hookActionFrontControllerSetMedia()
     {
+        $fontsFile = _PS_THEME_DIR_ . 'assets/css/fonts.css';
+
+        if (is_file($fontsFile)) {
+            $this->context->controller->registerStylesheet(
+                'designassets-fonts',
+                '/assets/css/fonts.css',
+                ['media' => 'all', 'priority' => 35]
+            );
+        }
+
         $tokensFile = _PS_THEME_DIR_ . 'assets/css/tokens.css';
 
         if (is_file($tokensFile)) {
