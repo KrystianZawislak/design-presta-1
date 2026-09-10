@@ -15,3 +15,20 @@
     font: inherit;
     color: inherit;
 }
+
+.header-top__free-shipping-bar{
+    color: var(--c-focus);
+}
+
+.header-top .ps-languageselector{
+    color: var(--c-ink);
+}
+
+.header-top__free-shipping-bar, .header-top .ps-languageselector{
+    font-weight: var(--fw-semibold);
+}
+
+.header-top .row{
+    min-height: 36px;
+    align-items: center;
+}
