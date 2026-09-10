@@ -26,18 +26,18 @@
       <div class="container-md">
         <div class="row">
           <div class="{$headerTop}__left col-md-4">
-            {$smarty.capture.header_nav_1 nofilter}
+            {if !empty($smarty.capture.header_free_shipping_bar)}
+              <div class="{$headerTop}__free-shipping-bar row">
+                {$smarty.capture.header_free_shipping_bar nofilter}
+              </div>
+            {/if}
           </div>
 
           <div class="{$headerTop}__right col-md-8">
             {$smarty.capture.header_nav_2 nofilter}
+            {$smarty.capture.header_nav_1 nofilter}
           </div>
         </div>
-        {if !empty($smarty.capture.header_free_shipping_bar)}
-          <div class="{$headerTop}__free-shipping-bar row">
-            {$smarty.capture.header_free_shipping_bar nofilter}
-          </div>
-        {/if}
       </div>
     </div>
   {/if}
