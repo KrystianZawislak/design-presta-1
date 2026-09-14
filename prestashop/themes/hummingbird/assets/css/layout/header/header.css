@@ -20,6 +20,10 @@
     color: var(--c-focus);
 }
 
+.free-shipping-bar:empty{
+    display: none;
+}
+
 .header-top .ps-languageselector{
     color: var(--c-ink);
 }

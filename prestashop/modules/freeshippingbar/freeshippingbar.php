@@ -31,7 +31,10 @@ class FreeShippingBar extends Module
 
     public function install()
     {
-        if (!parent::install() || !$this->registerHook('displayFreeShippingBar')) {
+        if (!parent::install()
+            || !$this->registerHook('displayFreeShippingBar')
+            || !$this->registerHook('actionFrontControllerSetMedia')
+        ) {
             return false;
         }
 
@@ -179,19 +182,48 @@ class FreeShippingBar extends Module
 
     public function hookDisplayFreeShippingBar()
     {
-        if (!Configuration::get(self::ENABLED)) {
+        return $this->renderBar();
+    }
+
+    public function hookActionFrontControllerSetMedia()
+    {
+        if (!$this->isActive()) {
+            return;
+        }
+
+        $this->context->controller->registerJavascript(
+            'module-freeshippingbar',
+            'modules/' . $this->name . '/views/js/freeshippingbar.js',
+            ['position' => 'bottom', 'priority' => 150]
+        );
+    }
+
+    public function renderBar()
+    {
+        if (!$this->isActive()) {
             return '';
         }
 
+        $message = $this->getMessage();
+
+        $this->context->smarty->assign([
+            'freeShippingBarMessage' => $message,
+            'freeShippingBarRefreshUrl' => $this->context->link->getModuleLink($this->name, 'refresh'),
+        ]);
+
+        return $this->fetch('module:freeshippingbar/views/templates/hook/freeshippingbar.tpl');
+    }
+
+    protected function isActive()
+    {
+        return Configuration::get(self::ENABLED) && (float) Configuration::get('PS_SHIPPING_FREE_PRICE') > 0;
+    }
+
+    protected function getMessage()
+    {
         $threshold = (float) Configuration::get('PS_SHIPPING_FREE_PRICE');
-
-        if ($threshold <= 0) {
-            return '';
-        }
-
         $cart = $this->context->cart;
         $cartTotal = $cart ? (float) $cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING, null, null, false) : 0.0;
-
         $missing = $threshold - $cartTotal;
 
         if ($missing <= 0) {
@@ -214,10 +246,7 @@ class FreeShippingBar extends Module
 
         $locale = Tools::getContextLocale($this->context);
         $formattedAmount = $locale->formatPrice($missing, $this->context->currency->iso_code);
-        $message = str_replace('%amount%', $formattedAmount, $template);
 
-        $this->context->smarty->assign('freeShippingBarMessage', $message);
-
-        return $this->fetch('module:freeshippingbar/views/templates/hook/freeshippingbar.tpl');
+        return str_replace('%amount%', $formattedAmount, $template);
     }
 }
