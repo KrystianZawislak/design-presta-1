@@ -28,6 +28,12 @@
     color: var(--c-ink);
 }
 
+.header-top .form-select{
+    background-color: var(--c-surface);
+    background-image: none;
+    padding-inline: 0;
+}
+
 .header-top__free-shipping-bar, .header-top .ps-languageselector{
     font-weight: var(--fw-semibold);
 }
