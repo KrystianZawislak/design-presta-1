@@ -43,3 +43,119 @@
     min-height: 36px;
     align-items: center;
 }
+
+.header-top__left{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.header-top__left > *{
+    flex-shrink: 0;
+}
+
+.header-top__left, .header-top__right{
+    gap: var(--s-7);
+}
+
+.header-bottom{
+    padding: 0 0;
+    font-family: var(--f-ui);
+}
+
+.header-bottom svg.header-block__icon{
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    flex-shrink: 0;
+    stroke-width: 1.5;
+}
+
+.header-bottom svg.ps-searchbar__magnifier{
+    width: var(--s-6);
+    height: var(--s-6);
+    color: var(--c-ink-muted);
+    stroke-width: 1.5;
+}
+
+.header-master{
+    display: flex;
+    min-height: 99px;
+    align-items: center;
+    position: relative;
+}
+
+.header-master::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 100vw;
+    bottom: 0;
+    margin-left: -50vw;
+    border-bottom: solid 1px var(--c-border);
+}
+
+.ps-searchbar__input{
+    padding-block: var(--s-4);
+    min-width: 480px;
+    border: solid 1px var(--c-border);
+    border-radius: 0;
+    background-color: var(--c-muted);
+    color: var(--c-ink-muted);
+    font-size: var(--fs-search);
+}
+
+.ps-searchbar__clear{
+    color: var(--c-ink-muted);
+}
+
+.ps-searchbar__input.form-control:focus{
+    box-shadow: none;
+    background-color: var(--c-base);
+    border: 1.5px solid var(--c-border-strong);
+}
+
+.ps-searchbar__form:focus-within .ps-searchbar__magnifier, 
+.ps-searchbar__form:focus-within .ps-searchbar__clear, 
+.ps-searchbar__form:focus-within .ps_searchbar__input{
+    color: var(--c-focus);
+}
+
+.ps-searchbar__input{
+    transition: none;
+}
+
+.header-block__title{
+    font-size: var(--fs-nav);
+    font-weight: var(--fw-semibold);
+}
+
+.header-block__action-btn{
+    gap: var(--s-2);
+    color: var(--c-ink);
+}
+
+.header-block__icon-wrap{
+    display: grid;
+}
+
+.header-block__icon-wrap > *{
+    grid-area: 1 / 1;
+}
+
+.header-block__badge{
+    align-self: start;
+    justify-self: end;
+    translate: 50% -50%;
+}
+
+.header-block__badge{
+    background-color: var(--c-sale);
+    color: var(--c-base);
+    font-size: var(--fs-badge);
+    min-width: 17px;
+    height: 17px;
+}
+
+.header-block--active .header-block__icon{
+    color: inherit;
+}
