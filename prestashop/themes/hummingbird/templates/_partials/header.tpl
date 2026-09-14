@@ -50,38 +50,53 @@
   <div class="{$headerBottom}">
     <div class="{$headerBottom}__container container-md">
       <div class="{$headerBottom}__row row gx-2 gx-md-4 align-items-stretch">
-        <div class="{$headerBottom}__logo d-flex align-items-center col-auto me-auto me-md-0">
-          {if $shop.logo_details}
-            {if $page.page_name == 'index'}<h1 class="{$headerBottom}__h1 mb-0">{/if}
-              {renderLogo}
-            {if $page.page_name == 'index'}</h1>{/if}
-          {/if}
-        </div>
-
-        {hook h='displayTop'}
-
-        <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
-          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
-          <div class="header-block">
-            <a href="{$urls.pages.my_account}" class="header-block__action-btn">
-              <i class="material-icons header-block__icon" aria-hidden="true">&#xE853;</i>
-            </a>
+        <div class="header-master">
+          <div class="{$headerBottom}__logo d-flex align-items-center col-auto me-auto me-md-0">
+            {if $shop.logo_details}
+              {if $page.page_name == 'index'}<h1 class="{$headerBottom}__h1 mb-0">{/if}
+                {renderLogo}
+              {if $page.page_name == 'index'}</h1>{/if}
+            {/if}
           </div>
-          {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
-        </div>
 
-        {if !$configuration.is_catalog}
-          <div id="_mobile_ps_shoppingcart" class="d-md-none d-flex col-auto">
+          {hook h='displayTop' excl='ps_mainmenu'}
+
+          <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
             {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
             <div class="header-block">
-              <a href="{$urls.pages.cart}" class="header-block__action-btn">
-                <i class="material-icons header-block__icon" aria-hidden="true">&#xE8CC;</i>
-                <span class="header-block__badge">{$cart.products_count}</span>
+              <a href="{$urls.pages.my_account}" class="header-block__action-btn">
+                <svg class="header-block__icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"></circle>
+                  <path d="M4 20a8 8 0 0 1 16 0"></path>
+                </svg>
               </a>
             </div>
             {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
           </div>
-        {/if}
+
+          {if !$configuration.is_catalog}
+            <div id="_mobile_ps_shoppingcart" class="d-md-none d-flex col-auto">
+              {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+              <div class="header-block">
+                <a href="{$urls.pages.cart}" class="header-block__action-btn">
+                  <span class="header-block__icon-wrap">
+                    <svg class="header-block__icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="9" cy="20" r="1.5"></circle>
+                      <circle cx="18" cy="20" r="1.5"></circle>
+                      <path d="M2.5 3h2l2.4 12.1a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"></path>
+                    </svg>
+                    <span class="header-block__badge">{$cart.products_count}</span>
+                  </span>
+                </a>
+              </div>
+              {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
+            </div>
+          {/if}
+        </div>
+
+        <div class="header-main_menu">
+          {hook h='displayTop' mod='ps_mainmenu'}
+        </div>
       </div>
     </div>
   </div>
