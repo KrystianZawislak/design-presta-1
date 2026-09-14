@@ -6,6 +6,7 @@ prestashop/*
 prestashop/modules/*
 !prestashop/modules/designassets
 !prestashop/modules/freeshippingbar
+!prestashop/modules/megamenu
 
 !prestashop/themes
 prestashop/themes/*

@@ -59,6 +59,13 @@
             {/if}
           </div>
 
+          {capture name="header_mega_menu_switcher"}{hook h='displayMegaMenuSwitcher'}{/capture}
+          {if !empty($smarty.capture.header_mega_menu_switcher)}
+            <div class="header-master__switcher">
+              {$smarty.capture.header_mega_menu_switcher nofilter}
+            </div>
+          {/if}
+
           {hook h='displayTop' excl='ps_mainmenu'}
 
           <div id="_mobile_ps_customersignin" class="d-md-none d-flex col-auto">
