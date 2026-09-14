@@ -86,6 +86,25 @@ class FreeShippingBar extends Module
 
     protected function renderForm()
     {
+        $defaultFormLanguage = (int) $this->context->language->id;
+
+        $taxModeValues = [];
+
+        foreach (Language::getLanguages(false) as $lang) {
+            $taxModeValues[(int) $lang['id_lang']] = Configuration::get(self::TAX_MODE, (int) $lang['id_lang']);
+        }
+
+        $this->context->smarty->assign([
+            'languages' => Language::getLanguages(false),
+            'default_form_language' => $defaultFormLanguage,
+            'field_name' => self::TAX_MODE,
+            'tax_mode_values' => $taxModeValues,
+            'brutto_label' => $this->l('Brutto'),
+            'netto_label' => $this->l('Netto'),
+        ]);
+
+        $taxModeHtml = $this->fetch('module:freeshippingbar/views/templates/admin/tax_mode.tpl');
+
         $fields_form = [
             'form' => [
                 'legend' => [
@@ -117,22 +136,10 @@ class FreeShippingBar extends Module
                         'desc' => $this->l('Use %amount% where the missing amount should appear.'),
                     ],
                     [
-                        'type' => 'switch',
+                        'type' => 'html',
                         'label' => $this->l('Display amount as'),
                         'name' => self::TAX_MODE,
-                        'lang' => true,
-                        'values' => [
-                            [
-                                'id' => 'tax_mode_brutto',
-                                'value' => 'brutto',
-                                'label' => $this->l('Brutto'),
-                            ],
-                            [
-                                'id' => 'tax_mode_netto',
-                                'value' => 'netto',
-                                'label' => $this->l('Netto'),
-                            ],
-                        ],
+                        'html_content' => $taxModeHtml,
                     ],
                     [
                         'type' => 'text',
@@ -155,7 +162,7 @@ class FreeShippingBar extends Module
         $helper->token = Tools::getAdminTokenLite('AdminModules');
         $helper->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
         $helper->languages = Language::getLanguages(false);
-        $helper->default_form_language = (int) $this->context->language->id;
+        $helper->default_form_language = $defaultFormLanguage;
         $helper->submit_action = 'submitFreeShippingBar';
 
         $helper->fields_value = $this->getConfigFieldsValues();
