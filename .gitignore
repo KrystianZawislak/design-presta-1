@@ -30,3 +30,13 @@ prestashop/themes/hummingbird/templates/*
 !prestashop/themes/hummingbird/templates/_partials
 prestashop/themes/hummingbird/templates/_partials/*
 !prestashop/themes/hummingbird/templates/_partials/header.tpl
+
+!prestashop/themes/hummingbird/modules
+prestashop/themes/hummingbird/modules/*
+!prestashop/themes/hummingbird/modules/ps_customersignin
+prestashop/themes/hummingbird/modules/ps_customersignin/*
+!prestashop/themes/hummingbird/modules/ps_customersignin/ps_customersignin.tpl
+
+!prestashop/themes/hummingbird/modules/ps_shoppingcart
+prestashop/themes/hummingbird/modules/ps_shoppingcart/*
+!prestashop/themes/hummingbird/modules/ps_shoppingcart/ps_shoppingcart.tpl
