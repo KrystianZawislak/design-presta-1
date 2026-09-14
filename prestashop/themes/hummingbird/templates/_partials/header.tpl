@@ -31,11 +31,14 @@
                 {$smarty.capture.header_free_shipping_bar nofilter}
               </div>
             {/if}
+            <a href="{$link->getCMSLink(1)}">{l s='Delivery' d='Shop.Theme.Global'}</a>
+            <a href="{$link->getCMSLink(5)}">{l s='Secure payment' d='Shop.Theme.Global'}</a>
           </div>
 
           <div class="{$headerTop}__right col-md-8">
-            {$smarty.capture.header_nav_2 nofilter}
             {$smarty.capture.header_nav_1 nofilter}
+            <a href="{$link->getCMSLink(4)}">{l s='About us' d='Shop.Theme.Global'}</a>
+            {$smarty.capture.header_nav_2 nofilter}
           </div>
         </div>
       </div>
