@@ -109,16 +109,21 @@
     padding-right: var(--s-2);
     width: 100%;
     min-width: 200px;
+    max-width: 560px;
     border: solid 1px var(--c-border);
     border-radius: 0;
     background-color: var(--c-muted);
     color: var(--c-ink-muted);
     font-size: var(--fs-search);
-    transition: none;
 }
 
 .ps-searchbar__clear{
     color: var(--c-ink-muted);
+}
+
+.form-control{
+    letter-spacing: -5%;
+    font-size: var(--s-4);
 }
 
 .ps-searchbar__input.form-control:focus{
@@ -127,10 +132,14 @@
     border: 1.5px solid var(--c-border-strong);
 }
 
-.ps-searchbar__form:focus-within .ps-searchbar__magnifier,
-.ps-searchbar__form:focus-within .ps-searchbar__clear,
-.ps-searchbar__form:focus-within .ps-searchbar__input{
+.ps-searchbar__form:focus-within .ps-searchbar__magnifier, 
+.ps-searchbar__form:focus-within .ps-searchbar__clear, 
+.ps-searchbar__form:focus-within .ps_searchbar__input{
     color: var(--c-focus);
+}
+
+.form-control{
+    letter-spacing: -0.05em;
 }
 
 .header-block__title{
@@ -186,7 +195,6 @@
     min-height: var(--s-9);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-
 }
 
 .megamenu-switcher .nav-link.active{
@@ -202,8 +210,57 @@
     flex-shrink: 0;
 }
 
-@media (min-width: 1200px) {
-    .ps-searchbar__input{
-        max-width: 560px;
+.ps-mainmenu__tree-item-wrapper{
+    margin-inline: 10px;
+}
+
+.ps-mainmenu__tree-dropdown-toggle{
+    align-self: center;
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    display: none;
+}
+
+.ps-mainmenu__tree-link{
+    padding: 16px 0px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink);
+}
+
+.ps-mainmenu__tree-item-wrapper{
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+}
+
+.ps-mainmenu__tree-item.type-megamenu-item:hover > .ps-mainmenu__tree-item-wrapper{
+    border-bottom-color: var(--c-ink);
+}
+
+.header-bottom{
+    border-bottom: 1px solid var(--c-border);
+}
+
+@media (max-width: 1199px) {
+    :root{
+        --header-gap-2: 16px;
+        --header-gap-1: 20px;
+        --fs-utility: 11px;
+        --fs-nav: 12px;
+    }
+
+    .form-control{
+        font-size: 13px;
+    }
+
+    .ps-customersignin .header-block__title{
+        max-width: 50px;
+    }
+
+    .header-block__action-btn{
+        padding: var(--s-1);
     }
 }

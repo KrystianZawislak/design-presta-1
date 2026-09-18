@@ -27,7 +27,7 @@
 @media (min-width: 992px) {
     .checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
     .container-xl, .container-xs, .container-xxl{
-        padding-inline: 40px;
+        padding-inline: 36px;
     }
 }
 
@@ -44,4 +44,9 @@
 #header *::after{
     transition: none !important;
     animation: none !important;
+}
+
+.ps-mainmenu:is(.ps-mainmenu--desktop) .ps-mainmenu__tree>li .submenu{
+    border-top: none;
+    top: 100% !important;
 }
