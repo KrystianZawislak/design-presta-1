@@ -8,7 +8,7 @@
     {if $customer.is_logged}
       <div class="dropdown header-block">
         <button
-          class="dropdown-toggle header-block__action-btn border-0 bg-transparent"
+          class="header-block__action-btn border-0 bg-transparent"
           id="userMenuButton"
           data-bs-toggle="dropdown"
           aria-haspopup="true"

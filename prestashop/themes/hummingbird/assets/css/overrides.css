@@ -30,3 +30,18 @@
         padding-inline: 40px;
     }
 }
+
+@media (min-width: 1200px) {
+    .checkout-steps__mobile, .container, .container-lg, .container-md, .container-sm,
+    .container-xl, .container-xs, .container-xxl{
+        padding-inline: 56px;
+    }
+}
+
+#header,
+#header *,
+#header *::before,
+#header *::after{
+    transition: none !important;
+    animation: none !important;
+}

@@ -40,7 +40,7 @@
 }
 
 .header-top .row{
-    min-height: 36px;
+    min-height: var(--s-8);
     align-items: center;
 }
 
@@ -77,6 +77,16 @@
     stroke-width: 1.5;
 }
 
+#_desktop_ps_searchbar{
+    margin-right: var(--header-gap-2);
+    flex: 1 1 auto;
+}
+
+#ps_searchbar{
+    width: 100%;
+    min-width: 0;
+}
+
 .header-master{
     display: flex;
     min-height: 99px;
@@ -96,12 +106,15 @@
 
 .ps-searchbar__input{
     padding-block: var(--s-4);
-    min-width: 480px;
+    padding-right: var(--s-2);
+    width: 100%;
+    min-width: 200px;
     border: solid 1px var(--c-border);
     border-radius: 0;
     background-color: var(--c-muted);
     color: var(--c-ink-muted);
     font-size: var(--fs-search);
+    transition: none;
 }
 
 .ps-searchbar__clear{
@@ -114,24 +127,22 @@
     border: 1.5px solid var(--c-border-strong);
 }
 
-.ps-searchbar__form:focus-within .ps-searchbar__magnifier, 
-.ps-searchbar__form:focus-within .ps-searchbar__clear, 
-.ps-searchbar__form:focus-within .ps_searchbar__input{
+.ps-searchbar__form:focus-within .ps-searchbar__magnifier,
+.ps-searchbar__form:focus-within .ps-searchbar__clear,
+.ps-searchbar__form:focus-within .ps-searchbar__input{
     color: var(--c-focus);
-}
-
-.ps-searchbar__input{
-    transition: none;
 }
 
 .header-block__title{
     font-size: var(--fs-nav);
     font-weight: var(--fw-semibold);
+    letter-spacing: -0.05em;
 }
 
 .header-block__action-btn{
     gap: var(--s-2);
     color: var(--c-ink);
+    padding: var(--s-2);
 }
 
 .header-block__icon-wrap{
@@ -158,4 +169,41 @@
 
 .header-block--active .header-block__icon{
     color: inherit;
+}
+
+.megamenu-switcher{
+    background-color: var(--c-muted);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding-inline: var(--s-1);
+}
+
+.megamenu-switcher .nav-link{
+    color: var(--c-ink-muted);
+    font-size: var(--fs-utility);
+    font-weight: var(--fw-bold);
+    min-height: var(--s-9);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+}
+
+.megamenu-switcher .nav-link.active{
+    color: var(--c-ink);
+    background-color: var(--c-base);
+}
+
+.header-master__switcher{
+    margin-inline: var(--header-gap-1);
+}
+
+.header-master > *{
+    flex-shrink: 0;
+}
+
+@media (min-width: 1200px) {
+    .ps-searchbar__input{
+        max-width: 560px;
+    }
 }

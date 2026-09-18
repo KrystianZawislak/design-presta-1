@@ -99,6 +99,18 @@
               {* JUST PLACEHOLDER FOR RESPONSIVE COMPONENT TO LOAD REAL ONE *}
             </div>
           {/if}
+
+          {if $customer.is_logged}
+            <div id="_mobile_blockwishlist" class="d-md-none d-flex col-auto">
+              <div class="header-block">
+                <a href="{$link->getModuleLink('blockwishlist', 'lists')}" class="header-block__action-btn">
+                  <svg class="header-block__icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          {/if}
         </div>
 
         <div class="header-main_menu">
