@@ -114,7 +114,7 @@
         </div>
 
         <div class="header-main_menu">
-          {hook h='displayTop' mod='ps_mainmenu'}
+          {hook h='displayMegaMenuNav'}
         </div>
       </div>
     </div>
