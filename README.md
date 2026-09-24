@@ -50,18 +50,7 @@ w hamburgerze ze scrollem) to **wersja desktopowa** (≥992px):
 
 Poniżej ~992px pasek nagłówka to standardowy, niecustomizowany layout Hummingbirda
 (logo, lupka, ulubione, konto, koszyk) — cała customizacja (switcher, rozwijane
-podkategorie) żyje **wewnątrz hamburgera** po jego otwarciu, nie w samym pasku:
-
-![Header mobile](docs/screenshots/header-mobile.png)
-
-Kontenery (`.container*`) mają zdjęty `max-width` (`overrides.css`) na rzecz
-pełnej szerokości ze skalowanym paddingiem — layout się nie rozjeżdża (nic się
-nie nakłada, nie ma poziomego scrolla) na żadnej szerokości, ale na bardzo
-szerokich ekranach (ultrawide) wyszukiwarka (capped na `max-width: 560px`) i
-kolumny mega menu (`repeat(5, 1fr)`) będą wizualnie "gubić się" w dużej pustej
-przestrzeni zamiast wypełniać ekran — to świadomy efekt braku `max-width` na
-kontenerze, nie bug. Jeśli to ma wyglądać inaczej na ultrawide, potrzebny byłby
-osobny `max-width` na `.header-bottom__container`.
+podkategorie) żyje **wewnątrz hamburgera** po jego otwarciu, nie w samym pasku.
 
 ## Branche
 
