@@ -1,5 +1,10 @@
 # Design Presta 1
 
+## Status projektu — MVP
+
+To nie jest gotowy sklep — to mockup/design headera (głównie desktop), reszta
+to niezmieniony Hummingbird. Szczegóły niżej w `## Header`.
+
 ## Uruchomienie od zera
 
 ```bash
@@ -29,14 +34,34 @@ Dane logowania do panelu admina są ustawione w `docker-compose.yml` (`ADMIN_MAI
 
 ## Struktura repo
 
-To repozytorium **nie zawiera pełnego kodu PrestaShopa** — tylko nasze customizacje.
-Czysta Presta jest ściągana automatycznie przez obraz Dockera przy pierwszym
-`docker-compose up`. Trackowane jest wyłącznie:
+Repo trzyma tylko customizacje (patrz `.gitignore` — reszta `prestashop/` jest
+ignorowana): moduł `designassets`, `freeshippingbar`, `megamenu`, wybrane pliki
+motywu `hummingbird` (CSS, `header.tpl`, `ps_customersignin`/`ps_shoppingcart`/
+`ps_languageselector`). Czysta Presta jest douzupełniana przez obraz Dockera przy
+pierwszym `docker-compose up` — entrypoint kopiuje ją przez `cp -n` (no-clobber),
+więc nigdy nie nadpisze plików, które już leżą w repo.
 
-- `docker-compose.yml`, `.gitignore`, `CLAUDE.md`, `README.md`
-- `prestashop/modules/designassets/`
-- `prestashop/themes/hummingbird/assets/css/layout/`
-- `prestashop/themes/hummingbird/assets/css/tokens.css`
+## Header
+
+Custom header (przełącznik Kobieta/Dziecko/Mężczyzna, mega menu, rozwijane menu
+w hamburgerze ze scrollem) to **wersja desktopowa** (≥992px):
+
+![Header desktop](docs/screenshots/header-desktop.png)
+
+Poniżej ~992px pasek nagłówka to standardowy, niecustomizowany layout Hummingbirda
+(logo, lupka, ulubione, konto, koszyk) — cała customizacja (switcher, rozwijane
+podkategorie) żyje **wewnątrz hamburgera** po jego otwarciu, nie w samym pasku:
+
+![Header mobile](docs/screenshots/header-mobile.png)
+
+Kontenery (`.container*`) mają zdjęty `max-width` (`overrides.css`) na rzecz
+pełnej szerokości ze skalowanym paddingiem — layout się nie rozjeżdża (nic się
+nie nakłada, nie ma poziomego scrolla) na żadnej szerokości, ale na bardzo
+szerokich ekranach (ultrawide) wyszukiwarka (capped na `max-width: 560px`) i
+kolumny mega menu (`repeat(5, 1fr)`) będą wizualnie "gubić się" w dużej pustej
+przestrzeni zamiast wypełniać ekran — to świadomy efekt braku `max-width` na
+kontenerze, nie bug. Jeśli to ma wyglądać inaczej na ultrawide, potrzebny byłby
+osobny `max-width` na `.header-bottom__container`.
 
 ## Branche
 
