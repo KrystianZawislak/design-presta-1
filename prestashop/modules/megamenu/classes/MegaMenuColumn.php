@@ -6,7 +6,7 @@ if (!defined('_PS_VERSION_')) {
 
 class MegaMenuColumn extends ObjectModel
 {
-    use MegaMenuPositionable;
+    const MAX_SLOTS = 5;
 
     const SEE_ALL_NONE = 'none';
     const SEE_ALL_CATEGORY = 'category';
@@ -51,18 +51,32 @@ class MegaMenuColumn extends ObjectModel
         return Db::getInstance()->executeS($sql);
     }
 
-    public static function getNextPosition(int $idItem): int
+    public static function getUsedSlots(int $idItem, int $excludeIdColumn = 0): array
     {
-        return self::nextPositionInScope('megamenu_column', 'id_item', $idItem);
+        $sql = 'SELECT position FROM `' . _DB_PREFIX_ . 'megamenu_column` WHERE id_item = ' . (int) $idItem;
+
+        if ($excludeIdColumn) {
+            $sql .= ' AND id_column != ' . (int) $excludeIdColumn;
+        }
+
+        return array_map('intval', array_column(Db::getInstance()->executeS($sql), 'position'));
     }
 
-    public function moveUp(): bool
+    public static function getNextFreeSlot(int $idItem): ?int
     {
-        return $this->moveOne('megamenu_column', 'id_column', -1, 'id_item', (int) $this->id_item);
+        $usedSlots = self::getUsedSlots($idItem);
+
+        for ($slot = 1; $slot <= self::MAX_SLOTS; ++$slot) {
+            if (!in_array($slot - 1, $usedSlots, true)) {
+                return $slot;
+            }
+        }
+
+        return null;
     }
 
-    public function moveDown(): bool
+    public static function isSlotTaken(int $idItem, int $slot, int $excludeIdColumn = 0): bool
     {
-        return $this->moveOne('megamenu_column', 'id_column', 1, 'id_item', (int) $this->id_item);
+        return in_array($slot - 1, self::getUsedSlots($idItem, $excludeIdColumn), true);
     }
 }

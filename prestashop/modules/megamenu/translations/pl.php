@@ -74,3 +74,18 @@ $_MODULE['<{megamenu}prestashop>megamenu_e86f0b0ff224d956ccd1759575c74ab0'] = 'U
 $_MODULE['<{megamenu}prestashop>megamenu_c902e5e079f749da3f4ab40c5a2e4fd9'] = 'Używane tylko gdy typ linku = Własny link (w przeciwnym razie używana jest nazwa kategorii/marki).';
 $_MODULE['<{megamenu}prestashop>megamenu_205618e6eae331300658d456454a9596'] = 'Używane tylko gdy typ linku = Własny link.';
 $_MODULE['<{megamenu}prestashop>megamenu_0654b1d293b317a6a02a32f93aa4edef'] = 'Wróć do linków';
+$_MODULE['<{megamenu}prestashop>megamenu_1aff82605ef87db15d7434f0ef971145'] = 'Zakres przełącznika w nagłówku';
+$_MODULE['<{megamenu}prestashop>megamenu_90d0dbfcb3a3deaf3fc0215a6fed8c31'] = 'Neutralny (żadna kategoria przełącznika nie wybrana)';
+$_MODULE['<{megamenu}prestashop>megamenu_261c029d90ffac4c8d00afc7ab3402ed'] = 'Pokaż tę pozycję menu tylko wtedy, gdy ta kategoria jest wybrana w przełączniku w nagłówku. Wybierz „Neutralny” dla menu widocznego zanim wybrana zostanie jakaś kategoria przełącznika (albo po jej odznaczeniu).';
+$_MODULE['<{megamenu}prestashop>megamenu_c99157a6adc0a337d28b1fcce30ddfba'] = 'Brak pozycji menu w tym zakresie.';
+$_MODULE['<{megamenu}prestashop>megamenu_e29ed4e15eaff6be6428dc5897d0441b'] = 'Skopiuj pozycje widoczne tutaj do innej kategorii przełącznika';
+$_MODULE['<{megamenu}prestashop>megamenu_5fb63579fc981698f97d55bfecb213ea'] = 'Kopiuj';
+$_MODULE['<{megamenu}prestashop>megamenu_4e4cfda8afa406537126c19adbbf091e'] = 'Kategoria docelowa ma już pozycje menu. Usuń je najpierw, jeśli chcesz je nadpisać kopią.';
+$_MODULE['<{megamenu}prestashop>megamenu_ef68e459a96a9ceae6da91484096f2e7'] = 'Kategoria źródłowa i docelowa muszą się różnić.';
+$_MODULE['<{megamenu}prestashop>megamenu_0256f18ee102495c7a7190485dfc7212'] = 'Menu skopiowane. Możesz teraz dopracować je dla nowej kategorii.';
+$_MODULE['<{megamenu}prestashop>megamenu_9234cc57c43f272b55a94b0069fe62d1'] = 'Miejsce';
+$_MODULE['<{megamenu}prestashop>megamenu_cca61c01ad207f2fdb64910a21160943'] = 'Wybierz prawidłowe miejsce.';
+$_MODULE['<{megamenu}prestashop>megamenu_6b91d52cad9e8163b57fd6a56ac045d0'] = 'To miejsce jest już zajęte przez inną kolumnę.';
+$_MODULE['<{megamenu}prestashop>megamenu_409f929c239ba41c594f228c31ef9753'] = 'Wszystkie 5 miejsc jest już zajętych dla tej pozycji menu.';
+$_MODULE['<{megamenu}prestashop>megamenu_94baf3bc0dd3f6ba5444c6df3f146634'] = 'Wszystkie 5 miejsc jest już zajętych dla tej pozycji menu. Usuń najpierw jedną kolumnę, jeśli chcesz dodać nową.';
+$_MODULE['<{megamenu}prestashop>megamenu_9e130c834e4693507642a93b41a8c49c'] = 'Każde miejsce zawsze pojawia się w tym samym fizycznym miejscu w rozwijanym menu, niezależnie od tego, ile innych kolumn jest skonfigurowanych dla tej pozycji.';
