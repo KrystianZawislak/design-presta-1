@@ -19,9 +19,6 @@
             <circle cx="12" cy="8" r="4"></circle>
             <path d="M4 20a8 8 0 0 1 16 0"></path>
           </svg>
-          <span class="header-block__title d-none d-md-block d-lg-none">
-            {$customer.firstname|capitalize|truncate:2:".":true}{$customer.lastname|capitalize|truncate:2:".":true}
-          </span>
           <span class="header-block__title d-lg-inline d-none">
             {$customerName|capitalize|truncate:22:"...":true}
           </span>
@@ -144,7 +141,7 @@
             <circle cx="12" cy="8" r="4"></circle>
             <path d="M4 20a8 8 0 0 1 16 0"></path>
           </svg>
-          <span class="d-none d-md-inline header-block__title">
+          <span class="d-none d-lg-inline header-block__title">
             {l s='Sign in' d='Shop.Theme.Actions'}
           </span>
         </a>
