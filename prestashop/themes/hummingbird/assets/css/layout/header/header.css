@@ -288,6 +288,23 @@
     gap: 3px;
 }
 
+.ps-searchbar__input{
+  max-width: var(--searchbar-max-width);
+}
+
+.ps-searchbar,
+.ps-searchbar__form{
+  max-width: var(--searchbar-max-width);
+  position: relative;
+}
+
+.ps-searchbar__dropdown{
+  width: auto;
+  max-width: none;
+  left: 0;
+  right: 0;
+}
+
 @media (max-width: 1199px) {
     :root{
         --header-gap-2: 16px;

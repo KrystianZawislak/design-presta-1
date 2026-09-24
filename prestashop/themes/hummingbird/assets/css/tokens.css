@@ -94,6 +94,9 @@
   --z-mega:       110;
   --z-overlay:    120;
   --z-drawer:     130;
+
+  --searchbar-max-width: 560px;
+
 }
 
 /* xs: <576px  ·  sm: ≥576px  ·  md: ≥768px  ·  lg: ≥992px  ·  xl: ≥1200px  ·  xxl: ≥1400px */
