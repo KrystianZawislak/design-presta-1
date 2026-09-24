@@ -18,6 +18,7 @@ class MegaMenuSelectModuleFrontController extends ModuleFrontController
         header('Content-Type: application/json');
         exit(json_encode([
             'success' => $success,
+            'mobileMenu' => $this->module->renderMobileMenuFragment(),
         ]));
     }
 }

@@ -7,9 +7,9 @@
       <div class="container">
         <div class="submenu__row row">
           <div class="submenu__right col-12" data-ps-ref="desktop-submenu-right">
-            <div class="submenu__right-items megamenu-columns" style="grid-template-columns: repeat({$item.columns|count}, 1fr);">
+            <div class="submenu__right-items megamenu-columns">
               {foreach from=$item.columns item=column}
-                <ul class="ps-mainmenu__group--{($column.links|count) ? 'child' : 'nochild'} megamenu-column">
+                <ul class="ps-mainmenu__group--{($column.links|count) ? 'child' : 'nochild'} megamenu-column" style="grid-column: {$column.slot};">
                   <li class="megamenu-column__title">{$column.title}</li>
                   {if $column.see_all}
                     <li>
@@ -79,42 +79,14 @@
   {desktopFirstLevel itemsFirstLevel=$nodes}
 {/function}
 
-{* GENERATE MOBILE MENU *}
-{function name="mobileMenu" nodes=[]}
-  <nav class="menu menu--mobile menu--current js-menu-current" id="menu-mobile" data-depth="0">
-    <ul class="menu__list">
-      {foreach from=$nodes item=menuItem}
-        <li class="type-{$menuItem.type} {if $menuItem.current} current{/if}" id="{$menuItem.page_identifier}">
-          <a class="menu__link" href="{$menuItem.url}" {if $menuItem.open_in_new_window}target="_blank"{/if}>
-            {$menuItem.label}
-          </a>
-        </li>
-        {foreach from=$menuItem.columns item=column}
-          <li class="menu__title">{$column.title}</li>
-          {if $column.see_all}
-            <li>
-              <a class="menu__link" href="{$column.see_all.url}">{$column.see_all.label}</a>
-            </li>
-          {/if}
-          {foreach from=$column.links item=link}
-            <li>
-              <a class="menu__link" href="{$link.url}" {if $link.open_in_new_window}target="_blank"{/if}>{$link.label}</a>
-            </li>
-          {/foreach}
-        {/foreach}
-      {/foreach}
-    </ul>
-  </nav>
-{/function}
-
 <div class="ps-mainmenu ps-mainmenu--desktop col-xl col-auto">
   {* DESKTOP MENU *}
-  <nav class="ps-mainmenu__desktop d-none d-xl-block position-static js-menu-desktop" data-ps-ref="desktop-menu-container" aria-label="{l s='Main navigation' d='Shop.Theme.Menu'}">
+  <nav class="ps-mainmenu__desktop d-none d-lg-block position-static js-menu-desktop" data-ps-ref="desktop-menu-container" aria-label="{l s='Main navigation' d='Shop.Theme.Menu'}">
     {desktopMenu nodes=$menu.children}
   </nav>
 
   {* MOBILE MENU *}
-  <div class="ps-mainmenu__mobile-toggle">
+  <div class="ps-mainmenu__mobile-toggle d-lg-none">
     <button
       class="menu-toggle btn btn-link"
       data-bs-toggle="offcanvas"
@@ -135,23 +107,34 @@
 >
   <div class="offcanvas-header">
     <div class="ps-mainmenu__back-button">
-      <button class="btn btn-link btn-sm d-none js-back-button" type="button" aria-label="{l s='Go back to main menu' d='Shop.Theme.Menu'}">
+      <button class="btn btn-link btn-sm d-none js-mobile-menu-back" type="button" aria-label="{l s='Go back to main menu' d='Shop.Theme.Menu'}">
         <span class="material-icons rtl-flip" aria-hidden="true">&#xE5CB;</span>
-        <span class="js-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
+        <span class="js-mobile-menu-back-title">{l s='All' d='Shop.Theme.Global'}</span>
       </button>
     </div>
-    <button type="button" class="btn-close btn text-reset" data-bs-dismiss="offcanvas" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
+    {if !(isset($megaMenuCategories) && $megaMenuCategories|count)}
+      <button type="button" class="btn-close btn text-reset" data-bs-dismiss="offcanvas" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
+    {/if}
   </div>
 
-  <div class="ps-mainmenu__mobile">
-    {mobileMenu nodes=$menu.children}
-  </div>
-
-  <div class="ps-mainmenu__additionnals offcanvas-body d-flex flex-wrap align-items-center gap-3">
-    <div class="ps-mainmenu__selects d-flex gap-2 me-auto">
-      <div id="_mobile_ps_currencyselector" class="col-auto"></div>
-      <div id="_mobile_ps_languageselector" class="col-auto"></div>
+  {if isset($megaMenuCategories) && $megaMenuCategories|count}
+    <div class="ps-mainmenu__mobile-switcher">
+      {include file="module:megamenu/views/templates/hook/switcher.tpl"}
+      <button type="button" class="btn-close btn text-reset" data-bs-dismiss="offcanvas" aria-label="{l s='Close' d='Shop.Theme.Global'}"></button>
     </div>
-    <div id="_mobile_ps_contactinfo"></div>
+  {/if}
+
+  <div class="offcanvas-body">
+    <div class="ps-mainmenu__mobile">
+      {include file="module:megamenu/views/templates/hook/_mobile_menu.tpl"}
+    </div>
+
+    <div class="ps-mainmenu__additionnals d-flex flex-wrap align-items-center gap-3">
+      <div class="ps-mainmenu__selects d-flex gap-2 me-auto">
+        <div id="_mobile_ps_currencyselector" class="col-auto"></div>
+        <div id="_mobile_ps_languageselector" class="col-auto"></div>
+      </div>
+      <div id="_mobile_ps_contactinfo"></div>
+    </div>
   </div>
 </div>
