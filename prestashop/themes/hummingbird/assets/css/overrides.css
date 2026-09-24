@@ -50,3 +50,10 @@
     border-top: none;
     top: 100% !important;
 }
+
+:root{
+  --bs-primary: var(--c-focus);
+  --bs-link-color: var(--c-ink);
+  --bs-link-hover-color: var(--c-ink);
+  --bs-focus-ring-color: rgba(31, 75, 63, .25);
+}
