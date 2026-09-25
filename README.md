@@ -11,12 +11,11 @@ Wymagane: [Docker Desktop](https://www.docker.com/products/docker-desktop/) (lub
 Docker Engine z Compose v2), `git`, `openssl`, dostęp do internetu, wolne porty
 `1000` i `3307`.
 
-1. Sklonuj repo i przejdź na branch `develop`:
+1. Sklonuj repo:
 
    ```bash
    git clone https://github.com/KrystianZawislak/design-presta-1.git
    cd design-presta-1
-   git checkout develop
    ```
 
 2. Utwórz plik `.env` (nie trafia do gita) z losowymi hasłami do bazy:
@@ -158,5 +157,5 @@ powrotu).
 
 ## Branche
 
-- `main` — czysty scaffold projektu (bez customizacji)
-- `develop` — bieżąca praca
+- `main` — wersja do oddania (squash z `develop`)
+- `develop` — bieżąca praca, pełna historia commitów
