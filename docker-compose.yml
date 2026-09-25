@@ -1,33 +1,35 @@
 services:
   db:
-    image: mariadb:11
+    image: mariadb:11.8.9@sha256:79d59758afc91b89b120b0a8904d637f5a3b3e1c4900f29b740d6d46c72fef68
     environment:
-      MYSQL_ROOT_PASSWORD: prestashop
-      MYSQL_DATABASE: prestashop
-      MYSQL_USER: prestashop
-      MYSQL_PASSWORD: prestashop
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWD:?set DB_ROOT_PASSWD in .env}
+      MARIADB_DATABASE: prestashop
+      MARIADB_USER: prestashop
+      MARIADB_PASSWORD: ${DB_PASSWD:?set DB_PASSWD in .env}
     volumes:
       - ./db_data:/var/lib/mysql
     ports:
-      - "3307:3306"
+      - "127.0.0.1:3307:3306"
 
   prestashop:
-    image: prestashop/prestashop:latest
+    image: prestashop/prestashop:9.1.5-8.5@sha256:8e1d3596c5b2b8c4385ac1506a3978f7ae6ff15bf73649713458691308bd2fcc
     ports:
-      - "1000:80"
+      - "127.0.0.1:1000:80"
     environment:
       DB_SERVER: db
       DB_NAME: prestashop
       DB_USER: prestashop
-      DB_PASSWD: prestashop
+      DB_PASSWD: ${DB_PASSWD:?set DB_PASSWD in .env}
       PS_SHOP_NAME: "DESIGN PRESTA 1"
       PS_INSTALL_AUTO: 1
       PS_LANGUAGE: pl
       PS_COUNTRY: PL
       PS_DOMAIN: localhost:1000
-      ADMIN_MAIL: admin@prestashop.local
-      ADMIN_PASSWD: PrestaShop123!
+      ADMIN_MAIL: ${ADMIN_MAIL:?set ADMIN_MAIL in .env}
+      ADMIN_PASSWD: ${ADMIN_PASSWD:?set ADMIN_PASSWD in .env}
     volumes:
       - ./prestashop:/var/www/html
+      - ./docker/post-install:/tmp/post-install-scripts:ro
+      - ./docker:/tmp/project:ro
     depends_on:
       - db

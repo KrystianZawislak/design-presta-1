@@ -1,3 +1,4 @@
+.env
 .DS_Store
 db_data/
 
@@ -45,3 +46,23 @@ prestashop/themes/hummingbird/modules/ps_customersignin/*
 !prestashop/themes/hummingbird/modules/ps_shoppingcart
 prestashop/themes/hummingbird/modules/ps_shoppingcart/*
 !prestashop/themes/hummingbird/modules/ps_shoppingcart/ps_shoppingcart.tpl
+
+!prestashop/themes/hummingbird/modules/ps_searchbar
+prestashop/themes/hummingbird/modules/ps_searchbar/*
+!prestashop/themes/hummingbird/modules/ps_searchbar/ps_searchbar.tpl
+
+!prestashop/themes/hummingbird/modules/blockwishlist
+prestashop/themes/hummingbird/modules/blockwishlist/*
+!prestashop/themes/hummingbird/modules/blockwishlist/views
+prestashop/themes/hummingbird/modules/blockwishlist/views/*
+!prestashop/themes/hummingbird/modules/blockwishlist/views/templates
+prestashop/themes/hummingbird/modules/blockwishlist/views/templates/*
+!prestashop/themes/hummingbird/modules/blockwishlist/views/templates/hook
+prestashop/themes/hummingbird/modules/blockwishlist/views/templates/hook/*
+!prestashop/themes/hummingbird/modules/blockwishlist/views/templates/hook/displayTop.tpl
+
+!prestashop/override
+prestashop/override/*
+!prestashop/override/modules
+prestashop/override/modules/*
+!prestashop/override/modules/blockwishlist
